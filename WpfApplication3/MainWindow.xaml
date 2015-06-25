@@ -1,0 +1,67 @@
+﻿<Window x:Class="PathEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="500" Width="600"
+        xmlns:bd="clr-namespace:PathEditor"
+        FontFamily="Arial"
+        FontSize="10" Closing="Window_Closing">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="0,5,0,5"/>
+        </Style>
+    </Window.Resources>
+    <Window.DataContext>
+        <bd:CustomDs x:Name="_prop"/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.Resources>
+            <bd:GeometoryConverter x:Key="GeoConvert"/>   
+            <Style TargetType="Path">
+                <Setter Property="Stroke" Value="Black" />
+                <Setter Property="StrokeThickness" Value="2"/>
+             </Style>
+
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="20">
+            <Path Data="{Binding TextProp1_A ,Converter={StaticResource GeoConvert}}"/>
+            <Path Data="{Binding TextProp2_A ,Converter={StaticResource GeoConvert}}" Stroke="Red"/>
+            <Path Data="{Binding TextProp3_A ,Converter={StaticResource GeoConvert}}" Stroke="Blue"/>
+            <Path Data="{Binding TextProp4_A ,Converter={StaticResource GeoConvert}}" Stroke="DarkGreen"/>
+        </Grid>
+
+        <TabControl Margin="10" Grid.Column="1" >
+            <TabItem  Header="Path1">
+                <Grid>
+                    <TextBox Name="_textbox1" Text="{Binding TextProp1}"/>
+                </Grid> 
+            </TabItem>
+
+            <TabItem  Header="Path2">
+                <Grid>
+                    <TextBox Name="_textbox2" Text="{Binding TextProp2}"/>
+                </Grid>
+            </TabItem>
+            <TabItem  Header="Path3">
+                <Grid>
+                    <TextBox Name="_textbox3" Text="{Binding TextProp3}"/>
+                </Grid>
+            </TabItem>
+            <TabItem  Header="Path4">
+                <Grid>
+                    <TextBox Name="_textbox4" Text="{Binding TextProp4}"/>
+                </Grid>
+            </TabItem>
+            <TabItem  Header="Const">
+                <Grid>
+                    <TextBox Name="_const_text" Text="{Binding ConstText}" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
